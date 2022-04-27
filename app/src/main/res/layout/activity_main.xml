@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        >
+
+        <Button
+            android:id="@+id/main_pageBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Главная страница"
+            android:layout_weight=".50"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/settingsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".50"
+            android:text="Настройки"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recucle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        android:background="@android:color/darker_gray">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+ <LinearLayout
+     android:id="@+id/LinerLayoutBottomBar"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="#2B5735"
+     android:visibility="gone">
+
+     <ImageView
+         android:id="@+id/PlayBottomBar"
+         android:layout_width="50dp"
+         android:layout_height="50dp"
+         android:src="@drawable/ic_play"
+         android:visibility="gone"
+         android:layout_alignParentRight="true"/>
+
+     <ImageView
+         android:id="@+id/PauseBottomBar"
+         android:layout_width="50dp"
+         android:layout_height="50dp"
+         android:src="@drawable/ic_pause"
+         android:visibility="visible"
+         android:layout_alignParentRight="true"/>
+
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="vertical">
+
+
+     <TextView
+         android:id="@+id/textBottomBar"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+
+         android:text="12334"
+         android:textSize="18dp" />
+
+    <SeekBar
+        android:id="@+id/BottomSeekBar"
+        android:layout_width="300dp"
+        android:layout_height="100px">
+
+    </SeekBar>
+
+
+     </LinearLayout>
+
+
+ </LinearLayout>
+
+
+
+</LinearLayout>
