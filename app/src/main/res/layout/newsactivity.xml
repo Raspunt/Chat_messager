@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
+    tools:context=".NewsActivity"
     android:orientation="vertical"
     >
 
@@ -28,11 +28,22 @@
             />
 
         <Button
-            android:id="@+id/settingsBtn"
+            android:id="@+id/NewsBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".50"
-            android:text="Настройки"
+            android:text="Новости"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/ChatBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".50"
+            android:text="Чат"
             android:background="#4B0082"
             android:textColor="@color/white"
             android:textAlignment="center"
@@ -42,30 +53,12 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
 
-
-        <Button
-            android:id="@+id/ChangeMusicFolder"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight=".50"
-            android:text="Выбрать папку с музыкой"
-        />
-
-        <TextView
-            android:id="@+id/pathToDir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Текушая директория:"
-            />
-
-    </LinearLayout>
-
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/listNews"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
     </LinearLayout>

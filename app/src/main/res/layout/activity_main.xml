@@ -27,11 +27,22 @@
             />
 
         <Button
-            android:id="@+id/settingsBtn"
+            android:id="@+id/newsBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".50"
-            android:text="Настройки"
+            android:text="Новости"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/ChatBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".50"
+            android:text="Чат"
             android:background="#4B0082"
             android:textColor="@color/white"
             android:textAlignment="center"
@@ -51,7 +62,9 @@
         android:layout_weight="1"
         android:padding="4dp"
         android:scrollbars="vertical"
-        android:background="@android:color/darker_gray">
+        android:background="@android:color/darker_gray"
+    tools:listitem="@layout/item"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -92,7 +105,7 @@
          android:layout_height="wrap_content"
 
          android:text="12334"
-         android:textSize="18dp" />
+         android:textSize="12dp" />
 
     <SeekBar
         android:id="@+id/BottomSeekBar"

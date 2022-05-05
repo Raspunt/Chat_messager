@@ -8,12 +8,18 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/drawable/ic_pause.xml" value="0.2985" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/drawable/ic_play.xml" value="0.2985" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/SettingsActivity.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/activity_main.xml" value="0.11043566362715299" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/custom_dialog_music_folder.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/item.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/listitemnews.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/newsActivity.xml" value="0.24954710144927536" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/newsactivity.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/second_activity.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/settingsActivity.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/layout/settingsactivity.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/mediaPlayer/app/src/main/res/xml/network_security_config.xml" value="0.11043566362715299" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/chat_activity.xml" value="0.16109422492401215" />
       </map>
     </option>
   </component>

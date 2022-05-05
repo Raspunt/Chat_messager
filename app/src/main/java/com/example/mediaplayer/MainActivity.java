@@ -2,7 +2,9 @@ package com.example.mediaplayer;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,10 +27,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements DataAdapter.OnNoteListener {
 
@@ -37,22 +41,27 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
     LinearLayout linearLayoutBottomBar ;
     TextView textViewBottomBar;
     SeekBar BottomSeekBar;
-    Button settingsBtn;
+    Button main_pageBtn;
+    Button newsBtn;
     SeekerUpdater  dat;
     ArrayList<String> musicListDir  = new  ArrayList<>();
+    Button ChatBtn;
 
     public static String music_folder = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+    private static final int REQUEST_PERMISSIONS = 12345;
 
-
-
+    private static MediaPlayer current_mp ;
+    private static String current_mp_name ;
 
 
 
     private static  final  String[] PERMISSIONS ={
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_NETWORK_STATE
+
     };
-    private static final int REQUEST_PERMISSIONS = 12345;
-    private static final int PERMISSIONS_COUNT = 1;
+
 
 
 
@@ -66,8 +75,14 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && arePermissionsDeniewd()) {
             requestPermissions(PERMISSIONS, REQUEST_PERMISSIONS);
-            return;
+            //return;
         }
+
+        if (current_mp != null){
+            linearLayoutBottomBar.setVisibility(View.VISIBLE);
+            textViewBottomBar.setText(current_mp_name);
+        }
+
 
         recyclerView = findViewById(R.id.recucle);
         btPlayTopBar = findViewById(R.id.PlayBottomBar);
@@ -75,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
         linearLayoutBottomBar = findViewById(R.id.LinerLayoutBottomBar);
         textViewBottomBar = findViewById(R.id.textBottomBar);
         BottomSeekBar = findViewById(R.id.BottomSeekBar);
-        settingsBtn = findViewById(R.id.settingsBtn);
+        newsBtn = findViewById(R.id.newsBtn);
+        main_pageBtn = findViewById(R.id.main_pageBtn);
+        ChatBtn = findViewById(R.id.ChatBtn);
 
 
         dat = new SeekerUpdater(BottomSeekBar);
@@ -89,13 +106,23 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
 
         dat.start();
 
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
+        newsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(view.getContext(),SettingsActivity.class);
+                Intent intent = new Intent(view.getContext(), NewsActivity.class);
                 startActivity(intent);
 
+
+            }
+        });
+
+        ChatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), LoginRegisterActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -129,12 +156,6 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
     }
 
 
-//    <><><><><><><><><>><><>
-
-    public void RemoveAllMusic(){
-        musicListDir.clear();
-    }
-
 
 
 
@@ -147,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
 
         @SuppressLint("NewApi")
         private boolean arePermissionsDeniewd() {
-            for (int i = 0; i < PERMISSIONS_COUNT; i++) {
+            for (int i = 0; i < PERMISSIONS.length; i++) {
                 if (checkSelfPermission(PERMISSIONS[i]) != PackageManager.PERMISSION_GRANTED) {
                     return true;
                 }
@@ -177,14 +198,21 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
                 return;
             }
 
-            final File[] files = musicDir.listFiles();
-            for (File file: files){
-                final String path = file.getAbsolutePath();
 
-                if(path.endsWith(".mp3")){
-                    musicListDir.add(path);
+            if (musicDir.listFiles() != null) {
+
+                final File[] files = musicDir.listFiles();
+
+                for (File file : files) {
+                    final String path = file.getAbsolutePath();
+                    Log.e("files",path);
+                    if (path.endsWith(".mp3")) {
+                        musicListDir.add(path);
+                    }
                 }
             }
+
+
         }
 
 
@@ -240,6 +268,8 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
         String MusicNameWithoutMp3 = musicName.replace(".mp3","");
         addNotification(MusicNameWithoutMp3);
         BottomBarButtons(MusicNameWithoutMp3,mp.get(position));
+        current_mp = mp.get(position);
+        current_mp_name = MusicNameWithoutMp3;
     }
     public  void BottomBarButtons(String nameSong, final MediaPlayer mptb){
         linearLayoutBottomBar.setVisibility(View.VISIBLE);
