@@ -1,10 +1,8 @@
-package com.example.mediaplayer;
+package com.example.mediaplayer.medActivity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,12 +25,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.mediaplayer.ChatActivity.LoginRegisterActivity;
+import com.example.mediaplayer.NewsActivity.NewsActivity;
+import com.example.mediaplayer.R;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements DataAdapter.OnNoteListener {
 
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.OnNot
     SeekBar BottomSeekBar;
     Button main_pageBtn;
     Button newsBtn;
-    SeekerUpdater  dat;
+    SeekerUpdater dat;
     ArrayList<String> musicListDir  = new  ArrayList<>();
     Button ChatBtn;
 

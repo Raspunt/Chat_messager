@@ -1,4 +1,4 @@
-package com.example.mediaplayer;
+package com.example.mediaplayer.NewsActivity;
 
 import static java.nio.file.Paths.get;
 
@@ -13,11 +13,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.mediaplayer.R;
+import com.example.mediaplayer.medActivity.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,17 +25,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class NewsActivity extends AppCompatActivity {

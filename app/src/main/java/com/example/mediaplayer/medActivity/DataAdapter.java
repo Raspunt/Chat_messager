@@ -1,4 +1,4 @@
-package com.example.mediaplayer;
+package com.example.mediaplayer.medActivity;
 
 
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mediaplayer.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

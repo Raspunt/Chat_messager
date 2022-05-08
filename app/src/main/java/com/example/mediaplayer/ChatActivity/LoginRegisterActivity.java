@@ -1,24 +1,22 @@
-package com.example.mediaplayer;
+package com.example.mediaplayer.ChatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
+import com.example.mediaplayer.R;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
-import java.util.ArrayList;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -33,6 +31,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     Button LoginBtn;
     EditText username_text;
     EditText password_text;
+    Context ctn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
                 String username = username_text.getText().toString();
                 String password = password_text.getText().toString();
+                ctn = view.getContext();
 
 
 
@@ -64,7 +64,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     }
 
 
-    private static class Create_user extends Thread {
+    private class Create_user extends Thread {
 
         String username;
         String password;
@@ -97,6 +97,76 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
 
 
+                String responseAns = Objects.requireNonNull(response.body()).string();
+
+
+                switch (responseAns){
+
+                    case "passwordWrong":
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast tt = Toast.makeText(LoginRegisterActivity.this,"пароль не правильный",Toast.LENGTH_LONG);
+                                tt.show();
+                            }
+                        });
+                        break;
+
+                    case "passwordRight":
+                        Intent intent = new Intent(ctn, ChatListActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case "UserNotExists":
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast tt = Toast.makeText(LoginRegisterActivity.this,"пользователь не правильный",Toast.LENGTH_LONG);
+                                tt.show();
+                            }
+                        });
+                        break;
+
+
+                    case "DataNotFound":
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast tt = Toast.makeText(LoginRegisterActivity.this,"Введите информаию",Toast.LENGTH_LONG);
+                                tt.show();
+                            }
+                        });
+                        break;
+
+
+
+
+
+
+
+
+                }
+
+//                if (responseAns.equals("passwordWrong")){
+//
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast tt = Toast.makeText(LoginRegisterActivity.this,"пароль не правильный",Toast.LENGTH_LONG);
+//                            tt.show();
+//                        }
+//                    });
+//
+//                }else if (responseAns.equals("passwordRight")){
+//
+//                    Intent intent = new Intent(ctn, chatActivity.class);
+//                    startActivity(intent);
+//
+//
+//                }
+
+
+
 
 
 //                URL url = new URL("http://192.168.1.9:8000/IsUserAuthenticated/");
@@ -113,7 +183,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
 //
 //                OutputStream stream = http.getOutputStream();
 //                stream.write(out);
-//
 //
 //
 //                BufferedReader in = new BufferedReader(new InputStreamReader(
