@@ -8,50 +8,7 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
 
-        >
-
-        <Button
-            android:id="@+id/main_pageBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Главная страница"
-            android:layout_weight=".50"
-            android:background="#4B0082"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            />
-
-        <Button
-            android:id="@+id/newsBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".50"
-            android:text="Новости"
-            android:background="#4B0082"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            />
-
-        <Button
-            android:id="@+id/ChatBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".50"
-            android:text="Чат"
-            android:background="#4B0082"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            />
-
-
-
-
-    </LinearLayout>
 
 
 
@@ -119,6 +76,51 @@
 
 
  </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        >
+
+        <Button
+            android:id="@+id/main_pageBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Главная страница"
+            android:layout_weight=".50"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/newsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".50"
+            android:text="Новости"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/ChatBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".50"
+            android:text="Чат"
+            android:background="#4B0082"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            />
+
+
+
+
+    </LinearLayout>
 
 
 

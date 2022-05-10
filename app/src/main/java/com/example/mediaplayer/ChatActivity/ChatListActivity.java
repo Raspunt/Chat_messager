@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mediaplayer.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import okhttp3.Call;
@@ -28,6 +30,7 @@ public class ChatListActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewChatList;
     ImageView addChatBtn;
+    ArrayList<Chat> chat_data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class ChatListActivity extends AppCompatActivity {
         recyclerViewChatList = findViewById(R.id.recyclerViewChatList);
         addChatBtn = findViewById(R.id.addChatBtn);
 
-//        ChatListAdapter chatAdapter = new ChatListAdapter()
+
 
 
             GetChat ch = new GetChat();
@@ -76,12 +79,33 @@ public class ChatListActivity extends AppCompatActivity {
 
                 String responseAns = Objects.requireNonNull(response.body()).string();
 
-                Log.e("json",responseAns);
+                JSONArray respJson = new JSONArray(responseAns);
+
+                for (int i = 0 ; i < respJson.length();i++){
+                    String chat_title = respJson.getJSONObject(i).get("chat_title").toString();
+                    String chat_disc = respJson.getJSONObject(i).get("chat_disc").toString();
+                    chat_data.add(new Chat(chat_title,chat_disc));
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                       ChatListAdapter adapter = new ChatListAdapter(ChatListActivity.this,chat_data);
+                       recyclerViewChatList.setAdapter(adapter);
+
+
+                    }
+                });
+                
 
 
 
 
-            } catch (IOException e) {
+
+
+
+
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
 

@@ -1,6 +1,7 @@
 package com.example.mediaplayer.ChatActivity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,12 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListViewHolder> {
         holder.chatListTitle.setText(chatListArr.get(position).title);
         holder.chatListTitle.setText(chatListArr.get(position).desc);
 
+
+
     }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -53,7 +59,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListViewHolder> {
 
 
 
-class ChatListViewHolder  extends RecyclerView.ViewHolder {
+class ChatListViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     TextView chatListTitle;
     TextView chatListDesc;
@@ -64,6 +70,15 @@ class ChatListViewHolder  extends RecyclerView.ViewHolder {
         chatListTitle = itemView.findViewById(R.id.ChatListTitle);
         chatListDesc = itemView.findViewById(R.id.ChatListDisc);
 
+        itemView.setOnClickListener(this);
 
     }
+
+    @Override
+    public void onClick(View v) {
+        Log.e("position", String.valueOf(getAdapterPosition()));
+    }
 }
+
+
+
