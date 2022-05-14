@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         app:layout_goneMarginStart="4dp"
-        android:background="@drawable/received_message"
+        android:background="@drawable/received_message_background"
         android:padding="12dp"
         android:textColor="@color/white"
         android:textSize="13dp"

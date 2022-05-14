@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mediaplayer.R;
-import com.example.mediaplayer.medActivity.MainActivity;
+import com.example.mediaplayer.Settings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,16 +53,6 @@ public class NewsActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
 
-        MainPageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(intent);
-
-
-            }
-        });
 
              Thread sp = new send_post();
 
@@ -82,8 +72,7 @@ public class NewsActivity extends AppCompatActivity {
 
         try {
 
-            Log.e("start thread","start");
-            URL url = new URL("http://143.198.231.162:65432/json");
+            URL url = new URL(Settings.GET_NEWS_JSON_URL);
             URLConnection con = url.openConnection();
             HttpURLConnection http = (HttpURLConnection) con;
             http.setRequestMethod("POST"); // PUT is another valid option

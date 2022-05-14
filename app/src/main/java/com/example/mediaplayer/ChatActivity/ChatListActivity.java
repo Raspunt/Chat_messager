@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mediaplayer.R;
+import com.example.mediaplayer.Settings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,7 +62,6 @@ public class ChatListActivity extends AppCompatActivity {
         public void run() {
 
             try {
-                String test_url = "http://192.168.1.9:8000/get_chatJson/";
                 OkHttpClient client = new OkHttpClient();
 
                 RequestBody formBody = new FormBody.Builder()
@@ -69,7 +69,7 @@ public class ChatListActivity extends AppCompatActivity {
 
 
                 Request request = new Request.Builder()
-                        .url(test_url)
+                        .url(Settings.GET_JSON_MESSAGE_URL)
                         .post(formBody)
                         .build();
 

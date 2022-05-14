@@ -6,9 +6,10 @@
     <solid android:color="@color/colorPrimary"/>
 
     <corners
-        android:bottomRightRadius="24dp"
-        android:topLeftRadius="24dp"
-        android:topRightRadius="24dp"/>
+        android:bottomRightRadius="32dp"
+        android:topRightRadius="32dp"
+        android:bottomLeftRadius="32dp"
+        />
 
 
 </shape>

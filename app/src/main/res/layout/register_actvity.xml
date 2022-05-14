@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Зарегистрировать  нового пользователя"
+        android:textSize="20dp"
+
+        android:layout_margin="10dp"
+
+        android:background="@color/secondary_text"
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Введите Username"
+        android:textSize="18dp"
+        android:layout_margin="10dp"
+        android:background="@color/secondary_text"
+
+
+        />
+
+    <EditText
+        android:id="@+id/RegisterUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Введите пароль"
+        android:textSize="18dp"
+        android:layout_margin="10dp"
+        android:background="@color/secondary_text"
+
+
+        />
+
+    <EditText
+        android:id="@+id/RegisterPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Повторите пароль"
+        android:textSize="18dp"
+        android:layout_margin="10dp"
+        android:background="@color/secondary_text"
+
+        />
+
+
+    <EditText
+        android:id="@+id/RegisterPasswordConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        />
+
+
+    <Button
+        android:id="@+id/RegisterSubmitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Потвердить"
+
+        />
+
+
+
+</LinearLayout>

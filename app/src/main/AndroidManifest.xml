@@ -21,7 +21,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         >
         <activity
-            android:name=".medActivity.MainActivity"
+            android:name=".loginAndRegister.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +35,9 @@
             android:exported="true"
             />
 
-        <activity android:name=".ChatActivity.LoginRegisterActivity"/>
+        <activity android:name=".loginAndRegister.RegisterActivity"/>
         <activity android:name=".ChatActivity.ChatListActivity"/>
+        <activity android:name=".ChatActivity.ChatActivity"/>
 
 
     </application>

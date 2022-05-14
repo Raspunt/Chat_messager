@@ -68,7 +68,19 @@
             />
 
 
+
     </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/RegisterLogSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="зарегистрироваться"
+        android:textSize="20dp"
+        android:layout_marginTop="100dp"
+        />
 
 
 

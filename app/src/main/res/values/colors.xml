@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="secondary_text">#BEBEBE</color>
     <color name="background_profile">#182835</color>
+    <color name="steelblue">#4682B4</color>
 </resources>
