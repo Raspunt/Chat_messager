@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,20 +30,21 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
+import okio.ByteString;
 
 public class ChatActivity extends AppCompatActivity {
 
-    public static JSONArray messageObjs ;
-    public static String current_user ;
-    public static int  current_chat_id;
+    public static JSONArray messageObjs;
+    public static String current_user;
+    public static int current_chat_id;
+    public static ChatAdapter adapter;
 
-    public static   ArrayList<MessageObj> mesArr = new ArrayList<>();
-    RecyclerView messagesList ;
+    public static ArrayList<MessageObj> mesArr = new ArrayList<>();
+    RecyclerView messagesList;
     ImageView SendButtonChatActiv;
     TextView inputMessageChatActiv;
-
-
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +57,13 @@ public class ChatActivity extends AppCompatActivity {
         inputMessageChatActiv = findViewById(R.id.inputMessageChatActiv);
 
 
-
-
-        for (int i = 0 ; i < messageObjs.length();i++){
+        for (int i = 0; i < messageObjs.length(); i++) {
             try {
 
                 String username = messageObjs.getJSONObject(i).get("author").toString();
                 String text = messageObjs.getJSONObject(i).get("text").toString();
                 String date = messageObjs.getJSONObject(i).get("date").toString();
-                MessageObj mes = new MessageObj(username,text,date);
+                MessageObj mes = new MessageObj(username, text, date);
 
                 mesArr.add(mes);
 
@@ -73,10 +74,7 @@ public class ChatActivity extends AppCompatActivity {
         }
 
 
-
-
-
-        ChatAdapter adapter = new ChatAdapter(this,mesArr);
+        adapter = new ChatAdapter(this, mesArr);
         messagesList.setAdapter(adapter);
 
 
@@ -84,15 +82,19 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RequestBody formBody = new FormBody.Builder()
-                        .add("chat_id",String.valueOf(current_chat_id))
-                        .add("username",current_user)
+                        .add("chat_id", String.valueOf(current_chat_id))
+                        .add("username", current_user)
                         .add("text", inputMessageChatActiv.getText().toString())
-                    .build();
+                        .build();
 
-                send_post(Settings.CREATE_MESSAGE_URL,formBody,ChatActivity.this,adapter);
+                send_post(Settings.CREATE_MESSAGE_URL, formBody, adapter);
                 inputMessageChatActiv.setText("");
             }
         });
+
+        Start_listeningWs();
+
+
 
 
 
@@ -102,8 +104,8 @@ public class ChatActivity extends AppCompatActivity {
 //    RequestBody formBody = new FormBody.Builder()
 //            .build();
 
-    public void send_post(String test_url, RequestBody formBody, Context context,ChatAdapter adapter){
 
+    public void send_post(String test_url, RequestBody formBody, ChatAdapter adapter) {
 
         new Thread(new Runnable() {
             @Override
@@ -111,8 +113,6 @@ public class ChatActivity extends AppCompatActivity {
 
                 try {
                     OkHttpClient client = new OkHttpClient();
-
-
 
 
                     Request request = new Request.Builder()
@@ -133,9 +133,9 @@ public class ChatActivity extends AppCompatActivity {
                     String text = lastMessage.get("text").toString();
                     String date = lastMessage.get("date").toString();
 
-                    Log.e("new Data",username+" " + text);
+                    Log.e("new Data", username + " " + text);
 
-                    mesArr.add(new MessageObj(username,text,date));
+                    mesArr.add(new MessageObj(username, text, date));
 
 
                     runOnUiThread(new Runnable() {
@@ -146,8 +146,6 @@ public class ChatActivity extends AppCompatActivity {
                     });
 
 
-
-
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
@@ -156,6 +154,24 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+
+    public static void Start_listeningWs(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url("ws://192.168.1.9:8000/JsonData").build();
+                WebSocketUpdater listener = new WebSocketUpdater();
+                WebSocket ws = client.newWebSocket(request, listener);
+                Log.e("Ws start","Server start");
+            }
+        }).start();
+
+
+
+
+    }
 
 
 
