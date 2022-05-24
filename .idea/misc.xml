@@ -41,6 +41,7 @@
         <entry key="app/src/main/res/layout/message_container.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/my_message.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/my_message_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/new_chat_activity.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/layout/newsactivity.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/received_message.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/received_message_item.xml" value="0.5" />

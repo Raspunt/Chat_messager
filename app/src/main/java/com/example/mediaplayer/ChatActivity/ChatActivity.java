@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mediaplayer.R;
@@ -40,11 +41,17 @@ public class ChatActivity extends AppCompatActivity {
     public static String current_user;
     public static int current_chat_id;
     public static ChatAdapter adapter;
+    public static ChatActivity context ;
+    public static AppCompatImageView addChatBtn;
+    public static  WebSocket ws;
+
+    public static String chat_name ;
 
     public static ArrayList<MessageObj> mesArr = new ArrayList<>();
     RecyclerView messagesList;
     ImageView SendButtonChatActiv;
     TextView inputMessageChatActiv;
+    TextView ChatNameChatActivity;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +59,16 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.chat_activity);
 
 
+
+        context = this ;
         messagesList = findViewById(R.id.chatRecyclerView);
         SendButtonChatActiv = findViewById(R.id.SendButtonChatActiv);
         inputMessageChatActiv = findViewById(R.id.inputMessageChatActiv);
+        ChatNameChatActivity = findViewById(R.id.ChatNameChatActivity);
 
+        ChatNameChatActivity.setText(chat_name);
 
+        mesArr.clear();
         for (int i = 0; i < messageObjs.length(); i++) {
             try {
 
@@ -97,7 +109,6 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-
     }
 
 
@@ -124,29 +135,9 @@ public class ChatActivity extends AppCompatActivity {
                     Response response = call.execute();
 
 
-                    String responseAns = Objects.requireNonNull(response.body()).string();
-
-                    JSONObject lastMessage = new JSONObject(responseAns);
 
 
-                    String username = lastMessage.get("username").toString();
-                    String text = lastMessage.get("text").toString();
-                    String date = lastMessage.get("date").toString();
-
-                    Log.e("new Data", username + " " + text);
-
-                    mesArr.add(new MessageObj(username, text, date));
-
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-
-
-                } catch (IOException | JSONException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -161,9 +152,10 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder().url("ws://192.168.1.9:8000/JsonData").build();
+                Request request = new Request.Builder().url(Settings.GET_JSON_USER_WS_URL).build();
                 WebSocketUpdater listener = new WebSocketUpdater();
-                WebSocket ws = client.newWebSocket(request, listener);
+                ws = client.newWebSocket(request, listener);
+
                 Log.e("Ws start","Server start");
             }
         }).start();
@@ -174,5 +166,12 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
 
+        ws.cancel();
+
+
+    }
 }

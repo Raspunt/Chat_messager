@@ -1,5 +1,6 @@
 package com.example.mediaplayer.ChatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,8 +49,15 @@ public class ChatListActivity extends AppCompatActivity {
             GetChat ch = new GetChat();
             ch.start();
 
+            addChatBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    Intent intent = new Intent(ChatListActivity.this, NewChatActivity.class);
+                    startActivity(intent);
 
+                }
+            });
 
     }
 

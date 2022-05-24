@@ -57,7 +57,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ChatListViewHolder holder, int position) {
         holder.chatListTitle.setText(chatListArr.get(position).title);
-        holder.chatListTitle.setText(chatListArr.get(position).desc);
+        holder.chatListDesc.setText(chatListArr.get(position).desc);
 
 
 
@@ -95,7 +95,7 @@ class ChatListViewHolder  extends RecyclerView.ViewHolder implements View.OnClic
 
         Get_messages messages = new Get_messages(getAdapterPosition());
         messages.start();
-
+        ChatActivity.chat_name = chatListTitle.getText().toString();
 
     }
 
@@ -130,6 +130,7 @@ class ChatListViewHolder  extends RecyclerView.ViewHolder implements View.OnClic
 
                 String responseAns = Objects.requireNonNull(response.body()).string();
 
+                Log.e("ee",responseAns.toString());
                 ChatActivity.messageObjs = new JSONArray(responseAns);
                 ChatActivity.current_chat_id = chat_id ;
 

@@ -38,6 +38,7 @@
         <activity android:name=".loginAndRegister.RegisterActivity"/>
         <activity android:name=".ChatActivity.ChatListActivity"/>
         <activity android:name=".ChatActivity.ChatActivity"/>
+        <activity android:name=".ChatActivity.NewChatActivity"/>
 
 
     </application>
